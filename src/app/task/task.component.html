@@ -1,0 +1,96 @@
+<section class="hero  is-fullheight" *ngIf="createTaskStatus">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-5-tablet is-9-desktop is-9-widescreen">
+
+          <form action="" class="box" (ngSubmit)="createTask()"> 
+            
+           <h1 class="title has-text-black is-3"> Create Task </h1> 
+
+            <div class="field level-right">
+            <button class="delete is-small" (click)="closeModel()"> 
+            </button> 
+            </div>
+
+            <div class="field">
+              <label for="" class="label">Title</label>
+              <div class="control has-icons-left">
+                <input [(ngModel)]="title" type="text" name="title" placeholder="title" class="input is-success">
+                <span class="icon is-small is-left">
+                  <i class="fa fa-comments"></i>
+                </span>
+              </div>
+
+            </div>
+
+            <div class="field">
+              <label for="" class="label">Description</label>
+              <div class="control has-icons-left">
+                <input [(ngModel)]="description" type="text" name="title" placeholder="description"
+                  class="input is-success">
+                <span class="icon is-small is-left">
+                  <i class="fa fa-comments"></i>
+                </span>
+              </div>
+
+            </div>
+
+            <div class="field">
+              <input [ngModel]="theDate" (ngModelChange)="theDate = $event" type="date" name="theDate" />
+            </div>
+
+            <div class="field level-right">
+              <button class="button is-success" type="submit">
+                Create
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div style="background-color: rgb(246, 249, 253);" *ngIf="!createTaskStatus">
+
+  <div class="column is-4 is-offset-4 hero is-centered">
+    <button class="button is-success " (click)="newTask()">
+      Create New Task
+    </button>
+  </div>
+
+
+  <div class="column is-4 is-offset-4 hero is-centered " *ngIf="!createTaskStatus && tasks.length === 0">
+    <span class="is-centered ">No Records Found</span>
+  </div>
+
+  <div class="column is-4 is-offset-4  messages hero is-fullheight" id="message-feed"
+    *ngIf="!createTaskStatus && tasks.length > 0">
+
+    <div class="timeline is-centered">
+      <header class="timeline-header">
+        <span class="tag is-medium is-primary">Start</span>
+      </header>
+
+
+      <div class="timeline-item" *ngFor="let item of tasks">
+        <div class="timeline-marker is-icon">
+          <i class="fa fa-flag"></i>
+        </div>
+        <div class="timeline-content">
+          <p class="heading">{{item.date  | date:'dd-MM-yyyy'}}</p>
+          <p><strong>{{item.title}} </strong></p>
+          <p>{{item.description}}</p>
+        </div>
+      </div>
+
+      <div class="timeline-header">
+        <span class="tag is-medium is-primary">End</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>

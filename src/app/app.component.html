@@ -1,0 +1,86 @@
+<div>
+    <nav class="navbar is-white topNav" style="background-color : #ffffff;">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="../">
+                   
+                </a>
+                <div class="navbar-burger burger" data-target="topNav">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div id="topNav" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" routerLink="/"> <span class="icon">
+                        <i class="fa  fa-home"></i>
+                    </span></a>
+                  
+                    
+                </div>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="field is-grouped">
+                            <p class="control" *ngIf="!loginState">
+                                <a class="button is-small" routerLink="/register">
+                                    <span class="icon">
+                                        <i class="fa fa-user-plus"></i>
+                                    </span>
+                                    <span >
+                                        Register
+                                    </span>
+                                </a>
+                            </p>
+                            <p class="control" *ngIf="!loginState">
+                                <a class="button is-small is-info is-outlined" routerLink="/login">
+                                    <span class="icon">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                    <span >Login</span>
+                                </a>
+                            </p>
+    
+                            <div class="dropdown" [ngClass]="{ 'is-active': isActive }" (click)="clickDropdown()"  *ngIf="loginState" >
+                                <div class="dropdown-trigger">
+                                  <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+                                    <span>{{username}}</span>
+                                    <span class="icon is-small">
+                                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                  </button>
+                                </div>
+                                <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+                                  <div class="dropdown-content"> 
+                                    <a class="dropdown-item" (click)="logout()">
+                                      Logout
+                                    </a>
+                                    
+                                    <!-- <hr class="dropdown-divider">
+                                    <a href="#" class="dropdown-item">
+                                      More
+                                    </a> -->
+                                  </div>
+                                </div>
+                              </div>
+                              
+                               
+                            <!-- <p class="control" *ngIf="loginState">
+                                
+                                
+                                <a class="button is-small is-info is-outlined" routerLink="/myProfile">
+                                    <span class="icon">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                    <span >{{username}}</span>
+                                </a>
+                            </p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+ </div>
+
+<router-outlet></router-outlet>

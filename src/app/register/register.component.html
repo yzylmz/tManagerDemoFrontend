@@ -1,0 +1,107 @@
+<div class="modal" [ngClass]="{ 'is-active' : isModalActive }">
+    <div class="modal-background" (click)="toggleModal()"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">User Registered Successfully!</p>
+        </header>
+        <footer class="modal-card-foot">
+            <button class="button is-success" (click)="toggleModal()">Go to Login Page</button> 
+        </footer>
+    </div>
+</div>
+
+<section class="hero  is-fullheight">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+
+                    <form action="" class="box" [formGroup]="registerForm" (ngSubmit)="register()">
+                        <h1 class="title has-text-black is-3">Register</h1>
+                        <div *ngIf="usernameExist" class="has-text-danger">Username allready exist.</div>
+
+                        <div class="field">
+                            <label for="" class="label">Username</label>
+                            <div class="control has-icons-left">
+                                <input formControlName="username" name="username" type="text"
+                                    placeholder="e.g. crazyboyy" class="input is-success"
+                                    [ngClass]="{ 'is-danger': (submitted && f.username.errors) || usernameExist }">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                    <div *ngIf="f.username.errors.required" class="has-text-danger">Username is required
+                                    </div>
+                                    <div *ngIf="f.username.errors.minlength" class="has-text-danger">Username must be at
+                                        least 4 characters</div>
+                                    <div *ngIf="f.username.errors.maxlength" class="has-text-danger">Username can be max
+                                        16 characters long.</div>
+                                    <div *ngIf="f.username.errors.pattern" class="has-text-danger">Only Alpha Numerics
+                                        are allowed..</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="field">
+                            <label for="" class="label">Password</label>
+                            <div class="control has-icons-left">
+                                <input formControlName="password" type="password" name="password" placeholder="*******"
+                                    class="input is-success"
+                                    [ngClass]="{ 'is-danger': submitted && f.password.errors }">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required" class="has-text-danger">Password is required
+                                    </div>
+                                    <div *ngIf="f.password.errors.minlength" class="has-text-danger">Password must be at
+                                        least 6 characters</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Confirm Password</label>
+                            <div class="control has-icons-left">
+                                <input formControlName="confirmPassword" type="password" name="password"
+                                    placeholder="*******" class="input is-success"
+                                    [ngClass]="{ 'is-danger': submitted && f.confirmPassword.errors }">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                                <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                                    <div *ngIf="f.confirmPassword.errors.required" class="has-text-danger">Confirm
+                                        Password is required</div>
+                                    <div *ngIf="f.confirmPassword.errors.ConfirmPassword" class="has-text-danger">
+                                        Passwords must match</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field" *ngIf="IncludeCheckbox">
+                            <label for="" class="checkbox">
+                                <input type="checkbox">
+                                Include existing chats in my registered account
+                            </label>
+                        </div>
+
+
+
+                        <!-- <div class="field">
+                  <label for="" class="checkbox">
+                    <input type="checkbox">
+                   Remember me
+                  </label>
+                </div> -->
+                        <div class="field level-right">
+                            <button class="button is-success" type="submit">
+                                Register
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
